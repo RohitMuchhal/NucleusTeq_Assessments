@@ -1,0 +1,139 @@
+
+body 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    margin: 0;
+}
+  
+.game-container
+{
+    text-align: center;
+    background: linear-gradient(to right, #e5eae9, #dae1ec);
+    padding: 29px;
+    border-radius: 18   px;
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2);
+    width: 1300px; 
+    height: 610px; 
+}
+  
+h1 
+{
+    font-size: 37px;
+    color: #191818;
+    margin-bottom: 16px;
+    margin-top: 10px;
+}
+  
+.turn-pointer 
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-info 
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 19px;
+}
+  
+#player1-border
+{
+    text-align: left;
+    padding: 16px;
+    background: linear-gradient(to left,rgb(106, 209, 227),rgb(43, 185, 216));
+    border-radius: 12px;
+    width: 47%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#player2-border
+{
+    text-align: left;
+    padding: 15px;
+    background: linear-gradient(to left,rgb(106, 209, 227),rgb(43, 185, 216));
+    border-radius: 12px;
+    width: 47%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+label 
+{
+    font-weight: bold;
+    color: #555;
+}
+  
+input 
+{
+    width: 90%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+  
+ 
+.dice-container 
+{
+    margin: 23px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+  
+
+button 
+{
+    padding: 14px 22px;
+    margin: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+  
+#roll-dice 
+{
+    background: #4CAF50;
+    color: white;
+}
+  
+#save-score
+{
+    background: #f39c12;
+    color: white;
+}
+  
+#reset-game 
+{
+    background: #e74c3c;
+    color: white;
+    margin-bottom: 10px;
+}
+   
+button:hover 
+{
+    opacity: 0.83;
+}
+  
+#winner 
+{
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 8px;
+}
+  
+.dice-container img 
+{
+    margin: 15px;
+    transition: transform 0.5s ease-in-out;
+}
+  
