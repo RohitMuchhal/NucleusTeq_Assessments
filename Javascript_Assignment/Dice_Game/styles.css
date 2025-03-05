@@ -5,7 +5,9 @@ body
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    /* background: linear-gradient(to right, #ff9a9e, #fad0c4); */
+    background:linear-gradient(to right,rgb(63, 3, 4),rgb(43, 7, 44));
+    /* background: linear-gradient(to right,rgb(78, 13, 22),rgb(75, 9, 60)); */
     margin: 0;
 }
   
