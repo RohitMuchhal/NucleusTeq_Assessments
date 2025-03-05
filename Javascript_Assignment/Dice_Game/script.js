@@ -20,7 +20,7 @@ function rollDice()
 {
     let diceRoll = Math.floor(Math.random() * 6) + 1;
     document.getElementById("dice-result").textContent = diceRoll;
-    document.getElementById("dice-image").src = `/Dice_Game/images/dice${diceRoll}.png`;
+    document.getElementById("dice-image").src = `/images/dice${diceRoll}.png`;
 
     document.getElementById("dice-image").style.transform = "rotate(600deg)";
 
@@ -33,6 +33,15 @@ function rollDice()
 }
 
 rollDiceBtn.addEventListener('click', () => {
+    if(rollDiceBtn.textContent==="Start Game")
+    {
+    rollDiceBtn.textContent="Roll Dice";
+    player1Name.disabled=true;
+    player2Name.disabled=true;
+    return;
+    }
+    else if(rollDiceBtn.textContent==="Roll Dice")
+    {
     const diceValue = rollDice();
     if (currentPlayer == 1)
     {
@@ -59,6 +68,7 @@ rollDiceBtn.addEventListener('click', () => {
         }
     }
     updateScores();
+    }
 });
 
 function updateScores() {
@@ -148,6 +158,8 @@ function resetGame()
 {
     const player1Borderw = document.querySelector("#player1-border");
     const player2Borderw = document.querySelector("#player2-border");
+    player1Name.disabled=false;
+    player2Name.disabled=false;
     currentPlayer = 1;
     player1Current = 0;
     player1Saved = 0;
@@ -156,6 +168,7 @@ function resetGame()
     winner.textContent = '';
     diceNumber.textContent = '-';
     resetGameBtn.textContent="Reset Game";
+    rollDiceBtn.textContent="Start Game";
     player1Borderw.style.border="none";
     player2Borderw.style.border="none";
     updateScores();
