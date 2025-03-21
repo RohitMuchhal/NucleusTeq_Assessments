@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+        <button id="rules-btn">Rules</button>
+        <div class="rules-overlay" id="rules-overlay">
+        <div class="rules" id="rules">
+            <h2>Game Rules</h2>
+            <ul>
+                <li>Players take turns rolling a dice.</li>
+                <li>If a player rolls a 1, their turn ends and current score resets to 0.</li>
+                <li>If the dice rolls any other number, it is added to the current score.</li>
+                <li>Players can save their score to add it to their saved total.</li>
+                <li>The first player to reach 100 points wins.</li>
+                <li>The Players can edit their name before starting the game.</li>
+            </ul>
+            <button id="close-rules">Close</button>
+        </div>
+    </div>
+    <div class="game-container">
+        <h1>🎲 Dice Dual 🎲</h1>
+        <div class="players">
+            <div class="player active" id="player1">
+                <input type="text" id="player1-name" value="Player 1">
+                <p>Saved Score: <span id="player1-saved">0</span></p>
+                <p>Current Score: <span id="player1-current">0</span></p>
+            </div>
+            <div class="player" id="player2">
+                <input type="text" id="player2-name" value="Player 2">
+                <p>Saved Score: <span id="player2-saved">0</span></p>
+                <p>Current Score: <span id="player2-current">0</span></p>
+            </div>
+        </div>
+        <div class="dice-container">
+            <img src="/images/dice1.png" id="dice" alt="Dice" class="popping-dice">
+        </div>
+        <div class="controls">
+            <button id="roll-dice">Roll Dice</button>
+            <button id="save-score">Save Score</button>
+            <button id="reset-game">Reset Game</button>
+        </div>
+        <p id="winner"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
