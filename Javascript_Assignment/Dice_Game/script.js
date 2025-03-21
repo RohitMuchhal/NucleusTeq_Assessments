@@ -1,180 +1,95 @@
-let currentPlayer = 1;
-let player1Current = 0;
-let player1Saved = 0;
-let player2Current = 0;
-let player2Saved = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    let currentPlayer = 1;
+    let currentScore = 0;
+    let scores = { 1: 0, 2: 0 };
+    const winningScore = 100;
+    const diceImg = document.getElementById("dice");
+    const rollBtn = document.getElementById("roll-dice");
+    const saveBtn = document.getElementById("save-score");
+    const resetBtn = document.getElementById("reset-game");
+    const winnerText = document.getElementById("winner");
+    let gameStarted = false;
 
-
-const player1Name=document.getElementById('player1-name');
-const player2Name = document.getElementById('player2-name');
-const player1Score = document.getElementById('player1-score');
-const player2Score = document.getElementById('player2-score');
-const diceNumber = document.getElementById('dice-result');
-const winner = document.getElementById('winner');
-
-const rollDiceBtn = document.getElementById('roll-dice');
-const saveScoreBtn = document.getElementById('save-score');
-const resetGameBtn = document.getElementById('reset-game');
-
-function rollDice() 
-{
-    let diceRoll = Math.floor(Math.random() * 6) + 1;
-    document.getElementById("dice-result").textContent = diceRoll;
-    document.getElementById("dice-image").src = `/images/dice${diceRoll}.png`;
-
-    document.getElementById("dice-image").style.transform = "rotate(600deg)";
-
-    setTimeout(() => 
+   
+    document.getElementById("rules-btn").addEventListener("click", () => 
     {
-        document.getElementById("dice-image").style.transform = "rotate(180deg)";
-    },500);
+        document.getElementById("rules-overlay").style.display = "flex";
+    });
+    document.getElementById("close-rules").addEventListener("click", () => 
+    {
+        document.getElementById("rules-overlay").style.display = "none";
+    });
+   
 
-    return diceRoll;
-}
+    const updateScores = () => {
+        document.getElementById(`player${currentPlayer}-current`).textContent = currentScore;
+        document.getElementById(`player1-saved`).textContent = scores[1];
+        document.getElementById(`player2-saved`).textContent = scores[2];
+    };
 
-rollDiceBtn.addEventListener('click', () => {
-    if(rollDiceBtn.textContent==="Start Game")
-    {
-    rollDiceBtn.textContent="Roll Dice";
-    player1Name.disabled=true;
-    player2Name.disabled=true;
-    return;
-    }
-    else if(rollDiceBtn.textContent==="Roll Dice")
-    {
-    const diceValue = rollDice();
-    if (currentPlayer == 1)
-    {
-        if (diceValue == 1) 
-        {
-            player1Current = 0;
-            switchTurn();
-        } 
-        else 
-        {
-            player1Current += diceValue;
+    const switchTurn = () => {
+        currentScore = 0;
+        updateScores();
+        document.getElementById(`player${currentPlayer}`).classList.remove("active");
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        document.getElementById(`player${currentPlayer}`).classList.add("active");
+    };
+
+    rollBtn.addEventListener("click", () => {
+        if (!gameStarted) {
+            document.getElementById("player1-name").setAttribute("readonly", true);
+            document.getElementById("player2-name").setAttribute("readonly", true);
+            gameStarted = true;
         }
-    } 
-    else {
-
-        if (diceValue == 1) 
-        {
-            player2Current = 0;
-            switchTurn();
-        }
-        else 
-        {
-            player2Current += diceValue;
-        }
-    }
-    updateScores();
-    }
-});
-
-function updateScores() {
-    player1Score.textContent = `Current Score: ${player1Current} Saved Score: ${player1Saved}`;
-    player2Score.textContent = `Current Score: ${player2Current} Saved Score: ${player2Saved}`;
-}
-  
-function switchTurn() {
-    if (currentPlayer == 1) 
-    {
-        currentPlayer = 2;
-    } 
-    else 
-    {
-        currentPlayer = 1;
-    }      
-    turnPointerfun(currentPlayer);
-}
-
-function turnPointerfun(currentPlayer) {
-    const player1Border = document.querySelector("#player1-border");
-    const player2Border = document.querySelector("#player2-border");
     
-    if (currentPlayer === 1)
-    {
-        player1Border.style.border = "4px solid black";  
-        player2Border.style.border = "none";  
-    } 
-    else if (currentPlayer === 2)
-    {
-        player1Border.style.border = "none";  
-        player2Border.style.border = "4px solid black";  
-    }
-}
+        diceImg.classList.add("rolling");
+        setTimeout(() => {
+            let diceRoll = Math.floor(Math.random() * 6) + 1;
+            diceImg.src = `dice${diceRoll}.png`; // Removed leading "/"
+            diceImg.classList.remove("rolling");
+            
+            if (diceRoll === 1) {
+                switchTurn();
+            } else {
+                currentScore += diceRoll;
+                updateScores();
+            }
+        }, 200);
+    });
+    
+
+    saveBtn.addEventListener("click", () => {
+        scores[currentPlayer] += currentScore;
+        if (scores[currentPlayer] >= winningScore) {
+            winnerText.textContent = `${document.getElementById(`player${currentPlayer}-name`).value} Wins! 🎉`;
+            rollBtn.disabled = true;
+            saveBtn.disabled = true;
+        } else {
+            switchTurn();
+        }
+    });
 
 
-function checkWinner() {
-    const player1Borderw = document.querySelector("#player1-border");
-    const player2Borderw = document.querySelector("#player2-border");
+    resetBtn.addEventListener("click", () => {
+        scores = { 1: 0, 2: 0 };
+        currentScore = 0;
+        currentPlayer = 1;
+        winnerText.textContent = "";
+        rollBtn.disabled = false;
+        saveBtn.disabled = false;
+        gameStarted = false;
+    
+        document.getElementById("player1-name").removeAttribute("readonly");
+        document.getElementById("player2-name").removeAttribute("readonly");
+    
+        updateScores();
+        diceImg.src = "dice1.png"; 
+        
+        document.getElementById("player1").classList.add("active");
+        document.getElementById("player2").classList.remove("active");
+    });
+    
 
-    if (player1Saved >= 100) 
-    {
-        winner.textContent = `${player1Name.value} Wins!`;
-        player2Borderw.style.border = "none";
-        player1Borderw.style.border="4px solid green";
-        resetGameBtn.textContent="Play Again..!";
-        disableBtns();
-    } 
-    else if (player2Saved >= 100) 
-    {
-        winner.textContent = `${player2Name.value} Wins!`;
-        player1Borderw.style.border = "none";
-        player2Borderw.style.border="4px solid green";
-        resetGameBtn.textContent="Play Again..!";
-        disableBtns();
-    }
-}
-
-saveScoreBtn.addEventListener('click', () => {
-
-    if (currentPlayer == 1) 
-    {
-        player1Saved += player1Current;
-        player1Current = 0;
-    } 
-    else
-    {
-        player2Saved += player2Current;
-        player2Current = 0;
-    }
+    document.getElementById("player1").classList.add("active");
     updateScores();
-    checkWinner();
-    if(!winner.textContent)
-    {
-        switchTurn();
-    }
 });
-
-
-function disableBtns() 
-{
-    rollDiceBtn.disabled = true;
-    saveScoreBtn.disabled = true;
-}
-
-function resetGame()
-{
-    const player1Borderw = document.querySelector("#player1-border");
-    const player2Borderw = document.querySelector("#player2-border");
-    player1Name.disabled=false;
-    player2Name.disabled=false;
-    currentPlayer = 1;
-    player1Current = 0;
-    player1Saved = 0;
-    player2Current = 0;
-    player2Saved = 0;
-    winner.textContent = '';
-    diceNumber.textContent = '-';
-    resetGameBtn.textContent="Reset Game";
-    rollDiceBtn.textContent="Start Game";
-    player1Borderw.style.border="none";
-    player2Borderw.style.border="none";
-    updateScores();
-    rollDiceBtn.disabled = false;
-    saveScoreBtn.disabled = false;
-}
-
-
-resetGameBtn.addEventListener('click', resetGame);
