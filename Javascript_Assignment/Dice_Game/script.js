@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         diceImg.classList.add("rolling");
         setTimeout(() => {
             let diceRoll = Math.floor(Math.random() * 6) + 1;
-            diceImg.src = `dice${diceRoll}.png`; // Removed leading "/"
+            diceImg.src = `dice${diceRoll}.png`; // Removed the images folder.
             diceImg.classList.remove("rolling");
             
             if (diceRoll === 1) {
