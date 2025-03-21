@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         diceImg.classList.add("rolling");
         setTimeout(() => {
             let diceRoll = Math.floor(Math.random() * 6) + 1;
-            diceImg.src = `images/dice${diceRoll}.png`; // Removed leading "/"
+            diceImg.src = `dice${diceRoll}.png`; // Removed leading "/"
             diceImg.classList.remove("rolling");
             
             if (diceRoll === 1) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("player2-name").removeAttribute("readonly");
     
         updateScores();
-        diceImg.src = "images/dice1.png"; 
+        diceImg.src = "dice1.png"; 
         
         document.getElementById("player1").classList.add("active");
         document.getElementById("player2").classList.remove("active");

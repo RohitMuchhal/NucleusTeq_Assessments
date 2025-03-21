@@ -14,7 +14,7 @@ body
 .game-container
 {
     text-align: center;
-    background: linear-gradient(to right, #e5eae9, #dae1ec);
+    background: white;
     padding: 29px;
     border-radius: 18   px;
     box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2);
@@ -138,4 +138,65 @@ button:hover
     margin: 15px;
     transition: transform 0.5s ease-in-out;
 }
-  
+@media (max-width: 1024px) {
+    .game-container {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+    
+    .player-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #player1-border, #player2-border {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+
+    .dice-container img {
+        width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        width: 95%;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .player-info {
+        flex-direction: column;
+    }
+    
+    #player1-border, #player2-border {
+        width: 100%;
+    }
+    
+    button {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+    
+    .dice-container img {
+        width: 60px;
+    }
+}
