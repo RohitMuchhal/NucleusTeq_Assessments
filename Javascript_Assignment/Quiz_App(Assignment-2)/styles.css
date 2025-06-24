@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 20px;
     /* background: linear-gradient(to right, rgb(148, 236, 177), rgb(191, 222, 226)); */
-    background: rgb(211, 160, 211);
+    background: rgb(18, 1, 1);
 }
 
 .container {
@@ -20,7 +20,7 @@ body {
     width: 90%;
     height: auto;
     margin: 0 auto;
-    background: rgb(63, 108, 171);
+    background: rgb(234, 242, 242);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -78,7 +78,7 @@ button {
 }
 
 button:hover {
-    background-color: #142c94;
+    background-color: #393e3c;
     transform: scale(1.05);
 }
 
