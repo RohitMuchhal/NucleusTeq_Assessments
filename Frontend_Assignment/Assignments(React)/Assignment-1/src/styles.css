@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 5;
+  font-family: sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.card {
+  border: 1px solid #951a1a;
+  padding: 15px 25px;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
