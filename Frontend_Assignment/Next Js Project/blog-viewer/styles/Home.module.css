@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: rgb(220, 234, 207); /* base white */
-  color: #1c2733; /* dark slate */
+  background: rgb(220, 234, 207); 
+  color: #1c2733; 
 }
 
 .title {
