@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(220, 234, 207); /* base white */
+  color: #1c2733; /* dark slate */
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #341d28;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem; 
+  color: #293229;
+}
+
+.button {
+  background-color: rgb(134, 198, 121);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  background-color: #4a8b34;
+}
